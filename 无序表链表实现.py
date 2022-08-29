@@ -114,12 +114,12 @@ class UnorderedList:
 
     def pop(self, pos=0):
         current = self.head
-        count = self.length() - 1
+        count = 0
         previous = None
         while count != pos:
             previous = current
             current = current.getNext()
-            count = count - 1
+            count = count + 1
 
         data = current.getData()
         if previous == None:
