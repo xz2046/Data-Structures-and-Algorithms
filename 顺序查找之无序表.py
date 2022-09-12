@@ -1,4 +1,4 @@
-def sequentialSearch(alist, item):
+def sequentialSearch(alist: list, item):
     pos = 0
     found = False
     while pos < len(alist) and not found:

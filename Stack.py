@@ -14,7 +14,7 @@ class Stack:
         if not self.stack:
             print("栈值为空")
         else:
-            self.stack.pop()
+            return self.stack.pop()
 
     def top(self):
         if not self.stack:
