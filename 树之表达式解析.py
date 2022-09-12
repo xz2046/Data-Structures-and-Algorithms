@@ -50,6 +50,7 @@ def evaluate(tree: BinaryTree):
         return tree.getRootVal()
 
 
+# 后序遍历优化求值
 def postordereval(tree: BinaryTree):
     opers = {
         '+': operator.add,
@@ -69,6 +70,20 @@ def postordereval(tree: BinaryTree):
             return tree.getRootVal()
 
 
+# 中序遍历生成全括号表达式
+def printexp(tree: BinaryTree):
+    sVal = ''
+    if tree:
+        sVal = '(' + printexp(tree.getLeftChild())
+        sVal = sVal + str(tree.getRootVal())
+        sVal = sVal + printexp(tree.getRightChild()) + ')'
+    return sVal
+
+
 fpexp = '( 12 + ( 6 / ( 2 + 1 ) ) )'
-n = evaluate(buildParseTree(fpexp))
-print(n)
+tree = buildParseTree(fpexp)
+n1 = evaluate(tree)
+n2 = postordereval(tree)
+print(n1)
+print(n2)
+print(printexp(tree))
