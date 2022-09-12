@@ -32,6 +32,7 @@ def buildParseTree(fpexp: str):
     return etree
 
 
+# 求值
 def evaluate(tree: BinaryTree):
     opers = {
         '+': operator.add,
@@ -47,6 +48,25 @@ def evaluate(tree: BinaryTree):
         return fn(evaluate(leftroot), evaluate(rightroot))
     else:
         return tree.getRootVal()
+
+
+def postordereval(tree: BinaryTree):
+    opers = {
+        '+': operator.add,
+        '*': operator.mul,
+        '-': operator.sub,
+        '/': operator.truediv,
+    }
+
+    res1 = None
+    res2 = None
+    if tree:
+        res1 = postordereval(tree.getLeftChild())
+        res2 = postordereval(tree.getRightChild())
+        if res1 and res2:
+            return opers[tree.getRootVal()](res1, res2)
+        else:
+            return tree.getRootVal()
 
 
 fpexp = '( 12 + ( 6 / ( 2 + 1 ) ) )'
